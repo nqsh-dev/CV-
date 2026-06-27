@@ -108,8 +108,8 @@ async function initiate({ planId, phone, operator, user }) {
 
   try {
     const serviceMap = {
-      mtn: 'mtn_mobile_money',
-      orange: 'orange_money',
+      mtn: 'MTN_MOMO_CMR',
+      orange: 'ORANGE_MONEY_CMR',
     };
 
     const service = serviceMap[operator?.toLowerCase()];
@@ -125,7 +125,7 @@ async function initiate({ planId, phone, operator, user }) {
       payment_method:        service,
       amount:                plan.amount,
       currency:              plan.currency,
-      customer_phone:        phone,
+      phone_number:          phone,
       merchant_invoice_id:   generateTxnId(),
       merchant_callback_url: process.env.CAMERPAY_CALLBACK_URL || '',
       merchant_return_url:   process.env.CAMERPAY_RETURN_URL || '',
