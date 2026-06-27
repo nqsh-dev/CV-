@@ -7,3 +7,6 @@ out/
 
 # Données utilisateur locales
 backend/database.json
+
+.vercel
+.env*
