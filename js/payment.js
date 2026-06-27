@@ -71,12 +71,6 @@ function _renderPaymentForm(planId, plan) {
       Économisez 750 FCFA vs plan mensuel
     </div>` : ''}
 
-    ${!isElectron ? `
-    <div style="background:#FEF9C3;border:1px solid #F59E0B;border-radius:var(--r-sm);
-                padding:8px 12px;font-size:12px;color:#713F12;margin-bottom:12px;">
-      <strong>Mode simulation</strong> — Les paiements réels nécessitent l'application de bureau CV+.
-    </div>` : ''}
-
     <div class="form-group">
       <label class="form-label">Numéro Mobile Money</label>
       <input class="form-input" id="pay-phone" placeholder="6XX XXX XXX"

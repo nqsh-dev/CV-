@@ -2,13 +2,15 @@ const PaymentBackend = require('../../../backend/payment-backend');
 
 const setCors = (res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Max-Age', '86400');
 };
 
 module.exports = async (req, res) => {
   setCors(res);
   if (req.method === 'OPTIONS') {
+    // Return early for preflight
     return res.status(204).end();
   }
 
