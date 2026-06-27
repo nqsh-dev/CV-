@@ -122,7 +122,7 @@ async function initiate({ planId, phone, operator, user }) {
     }
 
     const payload = {
-      payment_method:        service,
+      service:               service,
       amount:                plan.amount,
       currency:              plan.currency,
       phone_number:          phone,
