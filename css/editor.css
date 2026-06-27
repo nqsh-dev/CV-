@@ -1,0 +1,193 @@
+/* ══════════════════════════════════════════
+   Éditeur CV — Styles
+   ══════════════════════════════════════════ */
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 16px;
+  height: calc(100vh - var(--topbar-h) - 82px);
+}
+
+/* ── Panneau formulaire ── */
+.editor-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  display: flex; flex-direction: column;
+  overflow: hidden; box-shadow: var(--shadow-sm);
+}
+
+/* ── Onglets ── */
+.editor-tabs {
+  display: flex;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.editor-tabs::-webkit-scrollbar { display: none; }
+
+.editor-tab {
+  flex: 1; padding: 11px 6px;
+  font-size: 11px; font-weight: 600;
+  color: var(--text-muted); cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s; white-space: nowrap;
+  text-align: center; min-width: 0;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.editor-tab svg { width: 13px; height: 13px; flex-shrink: 0; }
+.editor-tab.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--bg-white); font-weight: 700; }
+.editor-tab:hover:not(.active) { color: var(--text-primary); background: var(--bg-hover); }
+
+/* ── Zone de formulaire ── */
+.editor-form { flex: 1; overflow-y: auto; padding: 16px; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ── Barre nav Précédent / Suivant ── */
+.tab-nav-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-top: 1px solid var(--border);
+  background: var(--bg-surface); flex-shrink: 0;
+}
+.tab-nav-info { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+.tab-nav-dots { display: flex; gap: 5px; align-items: center; }
+.tab-nav-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-dim); transition: all 0.2s; cursor: pointer; }
+.tab-nav-dot.active { background: var(--blue); width: 18px; border-radius: 3px; }
+.tab-nav-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 6px 12px; border: 1.5px solid var(--border);
+  background: var(--bg-white); border-radius: var(--r-sm);
+  color: var(--text-second); font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all 0.15s;
+}
+.tab-nav-btn:hover:not(:disabled) { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+.tab-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.tab-nav-btn.next { background: var(--blue); border-color: var(--blue); color: #fff; }
+.tab-nav-btn.next:hover:not(:disabled) { background: var(--blue-dark); border-color: var(--blue-dark); }
+
+/* ── Zone photo ── */
+.photo-upload-area {
+  border: 2px dashed var(--border); border-radius: var(--r-lg);
+  padding: 18px; text-align: center; cursor: pointer;
+  transition: all 0.15s; margin-bottom: 14px;
+}
+.photo-upload-area:hover { border-color: var(--blue); background: var(--blue-light); }
+.photo-upload-area img { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; margin: 0 auto 8px; display: block; border: 2px solid var(--border); }
+.photo-upload-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+.photo-upload-hint { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
+
+/* ── Bouton ajouter section ── */
+.add-section-btn {
+  display: flex; align-items: center; gap: 7px; width: 100%;
+  padding: 9px 13px; background: transparent;
+  border: 1.5px dashed var(--border); border-radius: var(--r-sm);
+  color: var(--text-muted); font-size: 13px; cursor: pointer;
+  transition: all 0.15s; margin-top: 8px;
+}
+.add-section-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+
+/* ── Entry items ── */
+.entry-item {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 13px; margin-bottom: 10px;
+}
+.entry-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.entry-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.entry-remove {
+  width: 22px; height: 22px; border-radius: 50%; border: none;
+  background: #FEE2E2; color: var(--red); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; transition: all 0.15s; flex-shrink: 0;
+}
+.entry-remove:hover { background: var(--red); color: #fff; }
+
+/* ── Tags compétences ── */
+.skills-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.skill-tag {
+  display: flex; align-items: center; gap: 5px;
+  padding: 4px 10px; background: var(--blue-light);
+  border: 1px solid rgba(30,94,255,0.2); border-radius: 20px;
+  font-size: 12px; color: var(--blue); font-weight: 500;
+}
+.skill-tag button { background: none; border: none; color: var(--blue); cursor: pointer; font-size: 13px; line-height: 1; opacity: 0.6; }
+.skill-tag button:hover { opacity: 1; }
+.skill-input-row { display: flex; gap: 7px; margin-top: 8px; }
+.skill-input-row .form-input { flex: 1; }
+
+/* ── Panneau aperçu ── */
+.preview-panel {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-lg); display: flex; flex-direction: column;
+  overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.preview-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 14px; background: var(--bg-surface);
+  border-bottom: 1px solid var(--border); flex-shrink: 0; gap: 8px;
+}
+.preview-topbar-left { display: flex; align-items: center; gap: 7px; }
+.preview-live-badge {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600; color: var(--green);
+}
+.live-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: livePulse 2s infinite; }
+@keyframes livePulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(0.8); } }
+
+/* ── Template dropdown ── */
+.tpl-selector-wrapper { position: relative; }
+.tpl-selector-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 12px; background: var(--bg-white);
+  border: 1.5px solid var(--border); border-radius: var(--r-sm);
+  font-size: 12px; font-weight: 600; color: var(--text-second);
+  cursor: pointer; transition: all 0.15s; white-space: nowrap;
+}
+.tpl-selector-btn:hover { border-color: var(--blue); color: var(--blue); }
+.tpl-selector-btn svg { width: 14px; height: 14px; }
+
+.tpl-grid-dropdown {
+  position: absolute; top: calc(100% + 6px); right: 0;
+  background: var(--bg-white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 10px;
+  z-index: 500; display: none;
+  grid-template-columns: repeat(3,1fr); gap: 7px;
+  width: 320px; box-shadow: var(--shadow-lg);
+}
+.tpl-grid-dropdown.open { display: grid; }
+
+.tpl-thumb {
+  border-radius: var(--r-sm); overflow: hidden; cursor: pointer;
+  border: 2px solid var(--border); transition: all 0.15s; position: relative;
+}
+.tpl-thumb:hover { border-color: var(--blue); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.tpl-thumb.active { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(30,94,255,0.15); }
+.tpl-thumb.locked { cursor: pointer; }
+.tpl-thumb-preview { height: 64px; display: flex; align-items: center; justify-content: center; }
+.tpl-thumb-preview svg { width: 20px; height: 20px; color: rgba(255,255,255,0.7); }
+.tpl-thumb-name { font-size: 9.5px; font-weight: 600; color: var(--text-second); text-align: center; padding: 4px 3px; background: var(--bg-surface); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tpl-thumb.active .tpl-thumb-name { color: var(--blue); background: var(--blue-light); }
+.tpl-lock-badge { position: absolute; top: 3px; right: 3px; background: rgba(0,0,0,0.5); border-radius: 4px; padding: 1px 4px; font-size: 8px; color: #fff; font-weight: 700; }
+
+.preview-wrapper {
+  flex: 1; overflow-y: auto; overflow-x: auto;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 16px; background: #9BA8B5;
+}
+#cv-preview-container { transform-origin: top center; }
+.preview-actions {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 14px; border-top: 1px solid var(--border);
+  background: var(--bg-surface); flex-shrink: 0;
+}
+
+/* ── Responsive editor ── */
+@media (max-width: 1100px) {
+  .editor-layout { grid-template-columns: 320px 1fr; }
+}
+@media (max-width: 900px) {
+  .editor-layout { grid-template-columns: 1fr; height: auto; }
+  .preview-panel { min-height: 480px; }
+}

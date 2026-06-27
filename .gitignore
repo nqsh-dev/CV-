@@ -1,0 +1,9 @@
+# Jamais committer ces fichiers
+.env
+node_modules/
+dist/
+out/
+*.log
+
+# Données utilisateur locales
+backend/database.json

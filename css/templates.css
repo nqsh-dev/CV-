@@ -1,0 +1,372 @@
+/* ══════════════════════════════════════════
+   Templates CV — Base uniforme
+   Photo : 80×80px, border-radius:50%
+   Page  : 210mm × 297mm
+   ══════════════════════════════════════════ */
+* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+/* ── Base commune ── */
+.cv-page {
+  width: 210mm; min-height: 297mm; max-height: 297mm;
+  background: #fff; font-family: 'Inter', sans-serif;
+  font-size: 10pt; color: #1A1A2E;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+  overflow: hidden; position: relative;
+}
+
+/* Photo commune : toujours 80×80, cercle */
+.cv-photo {
+  width: 80px !important; height: 80px !important;
+  border-radius: 50% !important; object-fit: cover !important;
+  flex-shrink: 0 !important; display: block !important;
+  background: #e2e8f0;
+}
+.cv-photo-placeholder {
+  width: 80px; height: 80px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 28px; background: rgba(255,255,255,0.15);
+}
+
+/* Titres de section communs */
+.cv-section-title {
+  font-size: 7.5pt; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.5px; margin: 16px 0 8px; padding-bottom: 4px;
+}
+.cv-entry { margin-bottom: 12px; }
+.cv-entry-name { font-size: 10pt; font-weight: 700; }
+.cv-entry-sub  { font-size: 8.5pt; font-weight: 600; margin: 1px 0; }
+.cv-entry-date { font-size: 7.5pt; color: #888; margin: 1px 0; }
+.cv-entry-desc { font-size: 8pt; line-height: 1.55; margin-top: 3px; color: #555; }
+
+/* ══════════════════════════════════════════
+   T1 — MODERNE BLEU (sidebar bleue)
+   ══════════════════════════════════════════ */
+.tpl-modern { display: grid; grid-template-columns: 68mm 1fr; }
+
+.tpl-modern .cv-sidebar {
+  background: #1565C0; padding: 28px 18px; color: #fff;
+  display: flex; flex-direction: column;
+}
+.tpl-modern .cv-main { padding: 28px 22px; }
+
+.tpl-modern .cv-photo { border: 3px solid rgba(255,255,255,0.4); margin: 0 auto 14px; }
+.tpl-modern .cv-photo-placeholder { border: 3px solid rgba(255,255,255,0.3); margin: 0 auto 14px; }
+
+.tpl-modern .cv-name { font-size: 13pt; font-weight: 800; color: #fff; text-align: center; line-height: 1.2; }
+.tpl-modern .cv-title { font-size: 8.5pt; color: rgba(255,255,255,0.75); text-align: center; margin-top: 3px; }
+
+.tpl-modern .cv-section-title { color: #00BCD4; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.tpl-modern .cv-contact-item { display: flex; align-items: center; gap: 6px; font-size: 8pt; color: rgba(255,255,255,0.85); margin-bottom: 5px; word-break: break-all; }
+.tpl-modern .cv-contact-icon { width: 12px; height: 12px; flex-shrink: 0; }
+
+.tpl-modern .cv-skill-row { margin-bottom: 7px; }
+.tpl-modern .cv-skill-label { font-size: 8pt; color: rgba(255,255,255,0.9); margin-bottom: 3px; }
+.tpl-modern .cv-skill-track { height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; }
+.tpl-modern .cv-skill-fill { height: 100%; background: linear-gradient(90deg,#00BCD4,#4DD0E1); border-radius: 2px; }
+
+.tpl-modern .cv-lang-item { display: flex; justify-content: space-between; font-size: 8pt; color: rgba(255,255,255,0.85); margin-bottom: 4px; }
+.tpl-modern .cv-lang-dots { display: flex; gap: 3px; }
+.tpl-modern .cv-lang-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+.tpl-modern .cv-lang-dot.on { background: #00BCD4; }
+
+.tpl-modern .cv-main .cv-section-title { color: #1565C0; border-left: 3px solid #FF8C00; padding-left: 8px; border-bottom: none; margin-bottom: 10px; }
+.tpl-modern .cv-entry-sub { color: #1565C0; }
+
+/* ══════════════════════════════════════════
+   T2 — EXECUTIVE (header gradient)
+   ══════════════════════════════════════════ */
+.tpl-executive .cv-header {
+  background: linear-gradient(135deg,#0D47A1,#1565C0 60%,#00BCD4);
+  padding: 28px 32px; display: flex; align-items: center; gap: 22px;
+}
+.tpl-executive .cv-photo { border: 3px solid rgba(255,255,255,0.45); }
+.tpl-executive .cv-photo-placeholder { border: 3px solid rgba(255,255,255,0.3); }
+
+.tpl-executive .cv-name { font-size: 20pt; font-weight: 800; color: #fff; }
+.tpl-executive .cv-title { font-size: 10pt; color: rgba(255,255,255,0.8); margin-top: 3px; }
+.tpl-executive .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; }
+.tpl-executive .cv-contact-pill { display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.15); border-radius: 20px; padding: 3px 10px; font-size: 8pt; color: rgba(255,255,255,0.9); }
+.tpl-executive .cv-contact-pill svg { width: 10px; height: 10px; }
+
+.tpl-executive .cv-body { display: grid; grid-template-columns: 1fr 64mm; padding: 22px 28px; gap: 0; }
+.tpl-executive .cv-col-main { padding-right: 22px; }
+.tpl-executive .cv-col-side { border-left: 1px solid #E5EAF2; padding-left: 20px; }
+.tpl-executive .cv-section-title { color: #1565C0; }
+.tpl-executive .cv-entry-sub { color: #1565C0; }
+.tpl-executive .cv-entry-date-badge { display: inline-block; font-size: 7.5pt; background: #EEF3FB; color: #1565C0; padding: 2px 7px; border-radius: 4px; margin: 2px 0; }
+.tpl-executive .cv-skill-item { display: flex; justify-content: space-between; align-items: center; font-size: 8.5pt; margin-bottom: 6px; }
+.tpl-executive .cv-skill-badge { background: #EEF3FB; color: #1565C0; border-radius: 4px; padding: 1px 7px; font-size: 7.5pt; font-weight: 700; }
+
+/* ══════════════════════════════════════════
+   T3 — MINIMAL (noir/blanc, typographie)
+   ══════════════════════════════════════════ */
+.tpl-minimal { padding: 40px 42px; background: #FAFAFA; }
+.tpl-minimal .cv-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2.5px solid #111; padding-bottom: 18px; margin-bottom: 20px; }
+.tpl-minimal .cv-photo { border-radius: 6px !important; border: none; }
+.tpl-minimal .cv-photo-placeholder { border-radius: 6px !important; background: #e2e8f0; }
+.tpl-minimal .cv-name { font-size: 24pt; font-weight: 800; color: #111; letter-spacing: -0.5px; line-height: 1; }
+.tpl-minimal .cv-title { font-size: 10.5pt; color: #FF8C00; font-weight: 600; margin-top: 4px; }
+.tpl-minimal .cv-contact-line { font-size: 8pt; color: #777; margin-top: 7px; }
+.tpl-minimal .cv-section-title { font-size: 7pt; color: #AAA; border-bottom: 1px solid #E5E5E5; padding-bottom: 5px; margin-bottom: 10px; }
+.tpl-minimal .cv-entry { display: grid; grid-template-columns: 26mm 1fr; gap: 0 14px; margin-bottom: 11px; }
+.tpl-minimal .cv-entry-date { font-size: 8pt; color: #999; padding-top: 1px; }
+.tpl-minimal .cv-entry-sub { color: #666; }
+.tpl-minimal .cv-skills-wrap { display: flex; flex-wrap: wrap; gap: 5px; }
+.tpl-minimal .cv-skill-pill { border: 1px solid #DDD; border-radius: 3px; padding: 3px 9px; font-size: 8pt; color: #444; }
+
+/* ══════════════════════════════════════════
+   T4 — CREATIVE (fond sombre, violet)
+   ══════════════════════════════════════════ */
+.tpl-creative .cv-header {
+  background: linear-gradient(135deg,#1A1A2E,#16213E,#0F3460);
+  padding: 28px 30px; display: flex; align-items: center; gap: 22px;
+  position: relative; overflow: hidden;
+}
+.tpl-creative .cv-header::before { content:''; position:absolute; top:-30px; right:-30px; width:130px; height:130px; background:rgba(168,85,247,0.18); border-radius:50%; }
+.tpl-creative .cv-photo { border: 3px solid rgba(168,85,247,0.5); position: relative; z-index:1; }
+.tpl-creative .cv-photo-placeholder { border: 3px solid rgba(168,85,247,0.4); position: relative; z-index:1; }
+.tpl-creative .cv-name { font-size: 19pt; font-weight: 800; color: #fff; line-height: 1.1; }
+.tpl-creative .cv-title { font-size: 9.5pt; color: #C084FC; margin-top: 4px; }
+.tpl-creative .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; }
+.tpl-creative .cv-contact-item { display: flex; align-items: center; gap: 5px; font-size: 8pt; color: rgba(255,255,255,0.7); }
+
+.tpl-creative .cv-body { display: grid; grid-template-columns: 1fr 66mm; padding: 22px 28px; gap: 0; background: #fff; }
+.tpl-creative .cv-col-main { padding-right: 22px; }
+.tpl-creative .cv-col-side { border-left: 1px solid #F0E6FF; padding-left: 20px; }
+.tpl-creative .cv-section-title { color: #A855F7; }
+.tpl-creative .cv-entry { padding-left: 12px; border-left: 3px solid #A855F7; }
+.tpl-creative .cv-entry-sub { color: #A855F7; }
+.tpl-creative .cv-skill-tag { display: inline-block; padding: 3px 10px; margin: 2px; background: linear-gradient(135deg,#A855F7,#EC4899); border-radius: 20px; font-size: 8pt; color: #fff; font-weight: 600; }
+
+/* ══════════════════════════════════════════
+   T5 — TECH DARK (fond noir, vert néon)
+   ══════════════════════════════════════════ */
+.tpl-techdark { background: #0D0D0D; color: #CCC; font-family: 'Courier New', monospace; }
+.tpl-techdark .cv-header { background: #111; border-bottom: 1px solid rgba(0,255,136,0.2); padding: 28px 30px; display: flex; align-items: center; gap: 22px; }
+.tpl-techdark .cv-photo { border: 2px solid #00FF88; }
+.tpl-techdark .cv-photo-placeholder { border: 2px solid #00FF88; background: #1A1A1A; }
+.tpl-techdark .cv-name { font-size: 18pt; font-weight: 800; color: #fff; letter-spacing: 1px; }
+.tpl-techdark .cv-title { font-size: 9pt; color: #00BFFF; margin-top: 4px; letter-spacing: 2px; }
+.tpl-techdark .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; }
+.tpl-techdark .cv-contact-item { font-size: 8pt; color: #666; }
+.tpl-techdark .cv-body { display: grid; grid-template-columns: 1fr 64mm; padding: 22px 28px; }
+.tpl-techdark .cv-col-main { padding-right: 22px; }
+.tpl-techdark .cv-col-side { border-left: 1px solid #1A1A1A; padding-left: 20px; }
+.tpl-techdark .cv-section-title { color: #00FF88; letter-spacing: 3px; font-family: 'Courier New', monospace; }
+.tpl-techdark .cv-entry-name { color: #00FF88; }
+.tpl-techdark .cv-entry-sub { color: #888; }
+.tpl-techdark .cv-entry-desc { color: #AAA; border-left: 2px solid rgba(0,255,136,0.3); padding-left: 8px; }
+.tpl-techdark .cv-skill-row { margin-bottom: 7px; }
+.tpl-techdark .cv-skill-label { font-size: 8.5pt; color: #CCC; margin-bottom: 3px; }
+.tpl-techdark .cv-skill-track { height: 3px; background: #222; border-radius: 2px; }
+.tpl-techdark .cv-skill-fill { height: 100%; background: linear-gradient(90deg,#00FF88,#00BFFF); border-radius: 2px; }
+
+/* ══════════════════════════════════════════
+   T6 — CORPORATE (serif, très classique)
+   ══════════════════════════════════════════ */
+.tpl-corporate { font-family: 'Georgia', serif; background: #FFFEF5; padding: 40px 44px; }
+.tpl-corporate .cv-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid #111; padding-bottom: 16px; margin-bottom: 20px; }
+.tpl-corporate .cv-photo { border-radius: 4px !important; border: 2px solid #ddd; }
+.tpl-corporate .cv-photo-placeholder { border-radius: 4px !important; background: #eee; }
+.tpl-corporate .cv-name { font-size: 22pt; font-weight: 700; color: #111; letter-spacing: -0.3px; }
+.tpl-corporate .cv-title { font-size: 10.5pt; color: #555; font-style: italic; margin-top: 4px; }
+.tpl-corporate .cv-contacts { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 8.5pt; color: #555; margin-bottom: 20px; }
+.tpl-corporate .cv-section-title { color: #111; border-bottom: 1px solid #DDD; font-family: 'Georgia', serif; letter-spacing: 1px; }
+.tpl-corporate .cv-entry { display: grid; grid-template-columns: 26mm 1fr; gap: 0 14px; margin-bottom: 12px; }
+.tpl-corporate .cv-entry-date { font-size: 8pt; color: #999; text-align: right; padding-top: 2px; }
+.tpl-corporate .cv-entry-sub { color: #555; font-style: italic; }
+.tpl-corporate .cv-skill-tag { display: inline-block; border: 1px solid #CCC; padding: 2px 9px; margin: 2px; font-size: 8pt; color: #333; }
+
+/* ══════════════════════════════════════════
+   T7 — SUNSET (orange dynamique)
+   ══════════════════════════════════════════ */
+.tpl-sunset .cv-header { background: linear-gradient(135deg,#FF6B35,#FF8E53,#FFC04D); padding: 28px 30px; display: flex; align-items: center; gap: 22px; }
+.tpl-sunset .cv-photo { border: 3px solid rgba(255,255,255,0.5); }
+.tpl-sunset .cv-photo-placeholder { border: 3px solid rgba(255,255,255,0.4); }
+.tpl-sunset .cv-name { font-size: 20pt; font-weight: 800; color: #fff; line-height: 1.15; }
+.tpl-sunset .cv-title { font-size: 9.5pt; color: rgba(255,255,255,0.85); margin-top: 4px; }
+.tpl-sunset .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; }
+.tpl-sunset .cv-contact-item { font-size: 8pt; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 5px; }
+.tpl-sunset .cv-body { display: grid; grid-template-columns: 1fr 66mm; padding: 22px 28px; background: #fff; }
+.tpl-sunset .cv-col-main { padding-right: 22px; }
+.tpl-sunset .cv-col-side { border-left: 2px solid #FFE5D9; padding-left: 20px; }
+.tpl-sunset .cv-section-title { color: #FF6B35; }
+.tpl-sunset .cv-entry { padding-left: 12px; border-left: 3px solid #FF6B35; }
+.tpl-sunset .cv-entry-sub { color: #FF6B35; }
+.tpl-sunset .cv-skill-row { margin-bottom: 7px; }
+.tpl-sunset .cv-skill-track { height: 5px; background: #FFE5D9; border-radius: 3px; }
+.tpl-sunset .cv-skill-fill { height: 100%; background: linear-gradient(90deg,#FF6B35,#FF8E53); border-radius: 3px; }
+
+/* ══════════════════════════════════════════
+   T8 — NATURE (vert)
+   ══════════════════════════════════════════ */
+.tpl-nature .cv-header { background: linear-gradient(135deg,#14532D,#16A34A,#22C55E); padding: 28px 30px; display: flex; align-items: center; gap: 22px; }
+.tpl-nature .cv-photo { border: 3px solid rgba(255,255,255,0.45); }
+.tpl-nature .cv-photo-placeholder { border: 3px solid rgba(255,255,255,0.35); }
+.tpl-nature .cv-name { font-size: 20pt; font-weight: 800; color: #fff; }
+.tpl-nature .cv-title { font-size: 9.5pt; color: #BBF7D0; margin-top: 4px; }
+.tpl-nature .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; }
+.tpl-nature .cv-contact-item { font-size: 8pt; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 5px; }
+.tpl-nature .cv-body { display: grid; grid-template-columns: 1fr 66mm; padding: 22px 28px; background: #FAFFFE; }
+.tpl-nature .cv-col-main { padding-right: 22px; }
+.tpl-nature .cv-col-side { border-left: 2px dashed #BBF7D0; padding-left: 20px; }
+.tpl-nature .cv-section-title { color: #16A34A; }
+.tpl-nature .cv-entry-card { background: #F0FBF4; border-radius: 7px; padding: 10px 12px; border-left: 3px solid #22C55E; margin-bottom: 10px; }
+.tpl-nature .cv-entry-sub { color: #16A34A; }
+.tpl-nature .cv-skill-tag { display: inline-block; padding: 3px 10px; margin: 2px; background: #DCFCE7; border: 1px solid #86EFAC; border-radius: 20px; font-size: 8pt; color: #14532D; font-weight: 600; }
+
+/* ══════════════════════════════════════════
+   T9 — GOLD (luxe doré)
+   ══════════════════════════════════════════ */
+.tpl-gold .cv-header { background: linear-gradient(135deg,#1A1200,#3D2B00,#5C4200); padding: 28px 30px; display: flex; align-items: center; gap: 22px; position: relative; overflow: hidden; }
+.tpl-gold .cv-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg,transparent,#D4AF37,transparent); }
+.tpl-gold .cv-photo { border: 3px solid #D4AF37; }
+.tpl-gold .cv-photo-placeholder { border: 3px solid #D4AF37; background: rgba(212,175,55,0.1); }
+.tpl-gold .cv-name { font-size: 20pt; font-weight: 700; color: #D4AF37; letter-spacing: 0.5px; }
+.tpl-gold .cv-title { font-size: 9.5pt; color: #C9A84C; margin-top: 4px; font-style: italic; }
+.tpl-gold .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; }
+.tpl-gold .cv-contact-item { font-size: 8pt; color: #C9A84C; display: flex; align-items: center; gap: 5px; }
+.tpl-gold .cv-body { display: grid; grid-template-columns: 1fr 64mm; padding: 22px 28px; background: #FFFEF5; }
+.tpl-gold .cv-col-main { padding-right: 22px; }
+.tpl-gold .cv-col-side { border-left: 1px solid #F5E6C3; padding-left: 20px; }
+.tpl-gold .cv-section-title { color: #B8960C; }
+.tpl-gold .cv-entry-sub { color: #B8960C; }
+.tpl-gold .cv-entry-date-badge { display: inline-block; font-size: 7.5pt; background: #FFFBEB; color: #B8960C; padding: 2px 7px; border-radius: 3px; }
+.tpl-gold .cv-skill-tag { display: inline-block; border: 1px solid #D4AF37; padding: 3px 9px; margin: 2px; font-size: 8pt; color: #92700A; background: #FFFBEB; }
+
+/* ══════════════════════════════════════════
+   T10 — OCEAN (bleu ciel)
+   ══════════════════════════════════════════ */
+.tpl-ocean .cv-header { background: linear-gradient(135deg,#0C4A6E,#0369A1,#0EA5E9); padding: 28px 30px; display: flex; align-items: center; gap: 22px; }
+.tpl-ocean .cv-photo { border: 3px solid rgba(255,255,255,0.5); }
+.tpl-ocean .cv-photo-placeholder { border: 3px solid rgba(255,255,255,0.35); }
+.tpl-ocean .cv-name { font-size: 20pt; font-weight: 800; color: #fff; }
+.tpl-ocean .cv-title { font-size: 9.5pt; color: #BAE6FD; margin-top: 4px; }
+.tpl-ocean .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; }
+.tpl-ocean .cv-contact-item { font-size: 8pt; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 5px; }
+.tpl-ocean .cv-body { display: grid; grid-template-columns: 1fr 64mm; padding: 22px 28px; background: #F0F9FF; }
+.tpl-ocean .cv-col-main { padding-right: 22px; }
+.tpl-ocean .cv-col-side { border-left: 2px solid #BAE6FD; padding-left: 20px; }
+.tpl-ocean .cv-section-title { color: #0EA5E9; }
+.tpl-ocean .cv-timeline-entry { display: flex; gap: 10px; margin-bottom: 12px; }
+.tpl-ocean .cv-timeline-dot { width: 10px; height: 10px; background: #0EA5E9; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.tpl-ocean .cv-entry-sub { color: #0EA5E9; }
+.tpl-ocean .cv-entry-card { background: #F0F9FF; border-radius: 7px; padding: 9px 11px; margin-bottom: 8px; }
+.tpl-ocean .cv-skill-row { margin-bottom: 7px; }
+.tpl-ocean .cv-skill-track { height: 4px; background: #E0F2FE; border-radius: 2px; }
+.tpl-ocean .cv-skill-fill { height: 100%; background: linear-gradient(90deg,#0EA5E9,#38BDF8); border-radius: 2px; }
+
+/* ══════════════════════════════════════════
+   T11 — ROSE
+   ══════════════════════════════════════════ */
+.tpl-rose .cv-header { background: linear-gradient(135deg,#881337,#BE123C,#E11D48); padding: 28px 30px; display: flex; align-items: center; gap: 22px; }
+.tpl-rose .cv-photo { border: 3px solid rgba(255,255,255,0.45); }
+.tpl-rose .cv-photo-placeholder { border: 3px solid rgba(255,255,255,0.35); }
+.tpl-rose .cv-name { font-size: 20pt; font-weight: 800; color: #fff; }
+.tpl-rose .cv-title { font-size: 9.5pt; color: #FFD5DC; margin-top: 4px; }
+.tpl-rose .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; }
+.tpl-rose .cv-contact-item { font-size: 8pt; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 5px; }
+.tpl-rose .cv-body { display: grid; grid-template-columns: 1fr 64mm; padding: 22px 28px; background: #fff; }
+.tpl-rose .cv-col-main { padding-right: 22px; }
+.tpl-rose .cv-col-side { border-left: 2px solid #FFD5DC; padding-left: 20px; }
+.tpl-rose .cv-section-title { color: #E11D48; }
+.tpl-rose .cv-entry-card { background: #FFF5F7; border-radius: 7px; padding: 10px 12px; border-left: 3px solid #FB7185; margin-bottom: 10px; }
+.tpl-rose .cv-entry-sub { color: #E11D48; }
+.tpl-rose .cv-skill-tag { display: inline-block; padding: 3px 10px; margin: 2px; background: linear-gradient(135deg,#FB7185,#F43F5E); border-radius: 20px; font-size: 8pt; color: #fff; font-weight: 600; }
+
+/* ══════════════════════════════════════════
+   T12 — SLATE (gris sombre)
+   ══════════════════════════════════════════ */
+.tpl-slate .cv-header { background: #0F172A; padding: 28px 30px; display: flex; align-items: center; gap: 22px; }
+.tpl-slate .cv-photo { border: 3px solid #334155; }
+.tpl-slate .cv-photo-placeholder { border: 3px solid #334155; background: #1E293B; }
+.tpl-slate .cv-name { font-size: 20pt; font-weight: 800; color: #F1F5F9; }
+.tpl-slate .cv-title { font-size: 9.5pt; color: #94A3B8; margin-top: 4px; }
+.tpl-slate .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; }
+.tpl-slate .cv-contact-item { font-size: 8pt; color: #64748B; display: flex; align-items: center; gap: 5px; }
+.tpl-slate .cv-body { display: grid; grid-template-columns: 1fr 64mm; padding: 22px 28px; background: #F8FAFC; }
+.tpl-slate .cv-col-main { padding-right: 22px; border-right: 1px solid #E2E8F0; }
+.tpl-slate .cv-col-side { padding-left: 20px; }
+.tpl-slate .cv-section-title { color: #334155; }
+.tpl-slate .cv-entry-sub { color: #475569; }
+.tpl-slate .cv-entry-date-badge { display: inline-block; font-size: 7.5pt; background: #F1F5F9; color: #64748B; padding: 2px 7px; border-radius: 4px; }
+.tpl-slate .cv-skill-row { margin-bottom: 7px; }
+.tpl-slate .cv-skill-track { height: 4px; background: #E2E8F0; border-radius: 2px; }
+.tpl-slate .cv-skill-fill { height: 100%; background: #334155; border-radius: 2px; }
+
+/* ══════════════════════════════════════════
+   T13 — SPLIT (indigo + blanc)
+   ══════════════════════════════════════════ */
+.tpl-split { display: grid; grid-template-columns: 70mm 1fr; min-height: 297mm; }
+.tpl-split .cv-sidebar { background: linear-gradient(180deg,#1E1B4B,#312E81); padding: 28px 20px; display: flex; flex-direction: column; }
+.tpl-split .cv-main { padding: 28px 24px; background: #fff; }
+.tpl-split .cv-photo { margin: 0 auto 12px; border: 3px solid rgba(255,255,255,0.2); }
+.tpl-split .cv-photo-placeholder { margin: 0 auto 12px; border: 3px solid rgba(255,255,255,0.2); }
+.tpl-split .cv-name { font-size: 14pt; font-weight: 800; color: #fff; text-align: center; line-height: 1.2; }
+.tpl-split .cv-title { font-size: 8.5pt; color: #818CF8; text-align: center; margin-top: 3px; }
+.tpl-split .cv-section-title-side { font-size: 7.5pt; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #6366F1; margin: 14px 0 8px; }
+.tpl-split .cv-contact-item { font-size: 8pt; color: #CBD5E1; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+.tpl-split .cv-skill-row { margin-bottom: 6px; }
+.tpl-split .cv-skill-label { font-size: 8pt; color: #E2E8F0; margin-bottom: 3px; }
+.tpl-split .cv-skill-track { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; }
+.tpl-split .cv-skill-fill { height: 100%; background: linear-gradient(90deg,#6366F1,#8B5CF6); border-radius: 2px; }
+.tpl-split .cv-main .cv-section-title { color: #312E81; border-bottom: 2px solid #E0E7FF; padding-bottom: 4px; }
+.tpl-split .cv-entry-card { background: #F5F3FF; border-radius: 7px; padding: 10px 12px; border-left: 3px solid #6366F1; margin-bottom: 10px; }
+.tpl-split .cv-entry-sub { color: #6366F1; }
+
+/* ══════════════════════════════════════════
+   T14 — INFOGRAPHIC (timeline colorée)
+   ══════════════════════════════════════════ */
+.tpl-infographic .cv-top-bar { height: 7px; background: linear-gradient(90deg,#3B82F6,#8B5CF6,#EC4899,#F59E0B); }
+.tpl-infographic .cv-header { display: flex; align-items: center; gap: 20px; padding: 22px 30px 18px; border-bottom: 1px solid #F1F5F9; }
+.tpl-infographic .cv-photo { border: 3px solid #E8EEFF; }
+.tpl-infographic .cv-photo-placeholder { border: 3px solid #E8EEFF; }
+.tpl-infographic .cv-name { font-size: 20pt; font-weight: 800; color: #0F172A; line-height: 1; }
+.tpl-infographic .cv-title { font-size: 9.5pt; color: #3B82F6; font-weight: 700; margin-top: 4px; }
+.tpl-infographic .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 9px; }
+.tpl-infographic .cv-contact-item { font-size: 8pt; color: #64748B; display: flex; align-items: center; gap: 5px; }
+.tpl-infographic .cv-body { display: grid; grid-template-columns: 1fr 64mm; padding: 18px 28px; gap: 0; }
+.tpl-infographic .cv-col-main { padding-right: 22px; }
+.tpl-infographic .cv-col-side { border-left: 2px solid #F1F5F9; padding-left: 20px; }
+.tpl-infographic .cv-section-title { color: #3B82F6; }
+.tpl-infographic .cv-timeline-entry { display: flex; gap: 10px; margin-bottom: 12px; }
+.tpl-infographic .cv-timeline-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+.tpl-infographic .cv-entry-sub { color: #8B5CF6; }
+.tpl-infographic .cv-skill-row { margin-bottom: 7px; }
+.tpl-infographic .cv-skill-track { height: 5px; background: #F1F5F9; border-radius: 3px; }
+.tpl-infographic .cv-bottom-bar { height: 4px; background: linear-gradient(90deg,#3B82F6,#8B5CF6,#EC4899,#F59E0B); margin-top: auto; }
+
+/* ══════════════════════════════════════════
+   T15 — BOLD (typographie massive)
+   ══════════════════════════════════════════ */
+.tpl-bold .cv-header { background: #111; padding: 32px 30px; display: flex; align-items: center; gap: 24px; position: relative; overflow: hidden; }
+.tpl-bold .cv-header::before { content: ''; position: absolute; right: -20px; top: -20px; width: 140px; height: 140px; background: rgba(255,215,0,0.06); border-radius: 50%; }
+.tpl-bold .cv-photo { border: 4px solid #fff; border-radius: 6px !important; }
+.tpl-bold .cv-photo-placeholder { border: 4px solid rgba(255,255,255,0.2); border-radius: 6px !important; background: #222; }
+.tpl-bold .cv-name { font-size: 22pt; font-weight: 900; color: #FFD700; text-transform: uppercase; letter-spacing: -0.5px; line-height: 0.95; }
+.tpl-bold .cv-name-last { color: #fff; }
+.tpl-bold .cv-title { font-size: 9pt; color: #999; margin-top: 9px; text-transform: uppercase; letter-spacing: 2px; }
+.tpl-bold .cv-header-contacts { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #333; }
+.tpl-bold .cv-contact-item { font-size: 8pt; color: #999; display: flex; align-items: center; gap: 5px; }
+.tpl-bold .cv-body { display: grid; grid-template-columns: 1fr 66mm; padding: 22px 28px; background: #fff; }
+.tpl-bold .cv-col-main { padding-right: 24px; }
+.tpl-bold .cv-col-side { border-left: 3px solid #111; padding-left: 22px; }
+.tpl-bold .cv-section-title { color: #111; border-bottom: 3px solid #111; padding-bottom: 4px; font-family: 'Arial Black', Arial, sans-serif; }
+.tpl-bold .cv-entry-card { background: #FAFAFA; border-left: 4px solid #111; padding: 10px 12px; margin-bottom: 10px; }
+.tpl-bold .cv-entry-sub { color: #555; }
+.tpl-bold .cv-skill-tag { display: inline-block; background: #111; color: #fff; padding: 4px 11px; margin: 2px; border-radius: 2px; font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ── Template cards (page Templates) ── */
+.template-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.template-card { background: var(--bg-card); border: 2px solid var(--border); border-radius: var(--r-lg); overflow: hidden; cursor: pointer; transition: all 0.2s; position: relative; box-shadow: var(--shadow-sm); }
+.template-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.template-card.selected { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(30,94,255,0.15); }
+.template-card.locked { cursor: default; }
+.template-preview-img { width: 100%; height: 180px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.template-card-info { padding: 12px 14px; border-top: 1px solid var(--border); background: var(--bg-white); }
+.template-card-name { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
+.template-card-tag  { font-size: 11px; color: var(--text-muted); }
+.lock-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(2px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; opacity: 0; transition: opacity 0.2s; }
+.template-card.locked:hover .lock-overlay { opacity: 1; }
+.lock-icon { font-size: 26px; }
+.lock-text { font-size: 12px; font-weight: 700; color: #fff; }
