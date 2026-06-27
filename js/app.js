@@ -3,6 +3,7 @@
 const App = {
   user:            null,
   plan:            null,
+  planExpiresAt:   null,
   cvCount:         0,
   isAdmin:         false,
   currentPage:     'dashboard',
@@ -22,18 +23,18 @@ const App = {
 
   plans: {
     starter: {
-      price: 500, period: 'unique', cvMax: 2,
+      price: 500, period: 'unique', cvMax: 2, durationDays: null,
       templates: ['modern','executive','minimal'],
       name: 'Starter'
     },
     pro: {
-      price: 1500, period: '1 mois', cvMax: Infinity,
+      price: 1500, period: '1 mois', cvMax: Infinity, durationDays: 30,
       templates: ['modern','executive','minimal','creative','techDark',
                   'corporate','sunset','nature','gold','ocean'],
       name: 'Pro'
     },
     premium: {
-      price: 3750, period: '3 mois', cvMax: Infinity,
+      price: 3750, period: '3 mois', cvMax: Infinity, durationDays: 90,
       templates: ['modern','executive','minimal','creative','techDark',
                   'corporate','sunset','nature','gold','ocean',
                   'rose','slate','split','infographic','bold'],
@@ -68,6 +69,26 @@ const App = {
     return tier === 'starter' ? 'Starter' : tier === 'pro' ? 'Pro' : 'Premium';
   },
 
+  isPlanExpired() {
+    if (!this.plan || this.isAdmin) return false;
+    if (!this.planExpiresAt) return false;
+    return Date.now() > this.planExpiresAt;
+  },
+
+  clearExpiredPlan() {
+    this.plan = null;
+    this.planExpiresAt = null;
+    this.cvCount = 0;
+  },
+
+  ensurePlanValidity() {
+    if (this.isPlanExpired()) {
+      this.clearExpiredPlan();
+      return false;
+    }
+    return !!this.plan;
+  },
+
   navigate(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('[data-page]').forEach(n => n.classList.remove('active'));
@@ -81,13 +102,14 @@ const App = {
 
   canUseTemplate(tplId) {
     if (this.isAdmin) return true;
-    if (!this.plan)   return tplId === 'modern';
+    if (!this.ensurePlanValidity()) return tplId === 'modern';
+    if (!this.plan) return tplId === 'modern';
     return (this.plans[this.plan]?.templates || []).includes(tplId);
   },
 
   canDownload() {
     if (this.isAdmin) return true;
-    if (!this.user || !this.plan) return false;
+    if (!this.user || !this.ensurePlanValidity()) return false;
     const max = this.plans[this.plan]?.cvMax ?? 0;
     return this.cvCount < max;
   },
@@ -115,10 +137,11 @@ const App = {
   saveSession() {
     try {
       localStorage.setItem('cvplus_session', JSON.stringify({
-        user:    this.user,
-        plan:    this.plan,
-        cvCount: this.cvCount,
-        isAdmin: this.isAdmin
+        user:          this.user,
+        plan:          this.plan,
+        planExpiresAt: this.planExpiresAt,
+        cvCount:       this.cvCount,
+        isAdmin:       this.isAdmin
       }));
     } catch(e) {}
   },
@@ -127,10 +150,12 @@ const App = {
     try {
       const s = JSON.parse(localStorage.getItem('cvplus_session') || 'null');
       if (s && s.user) {
-        this.user    = s.user;
-        this.plan    = s.plan;
-        this.cvCount = s.cvCount || 0;
-        this.isAdmin = s.isAdmin || false;
+        this.user          = s.user;
+        this.plan          = s.plan;
+        this.planExpiresAt = s.planExpiresAt || null;
+        this.cvCount       = s.cvCount || 0;
+        this.isAdmin       = s.isAdmin || false;
+        this.ensurePlanValidity();
       }
     } catch(e) {}
   }
@@ -153,9 +178,13 @@ function updatePlanBadge() {
     const p = App.plans[App.plan];
     const used = App.cvCount;
     const max  = p.cvMax === Infinity ? '∞' : p.cvMax;
+    const expiry = App.planExpiresAt
+      ? `Expire le ${new Date(App.planExpiresAt).toLocaleDateString('fr-FR')}`
+      : null;
     badge.innerHTML = `
       <div class="plan-name">${p.name}</div>
       <div class="plan-info" style="font-size:12px;opacity:0.85;">${used} / ${max} CV générés</div>
+      ${expiry ? `<div class="plan-info" style="font-size:12px;opacity:0.7;margin-top:4px;">${expiry}</div>` : ''}
       <button class="plan-upgrade-btn" onclick="App.navigate('pricing')">Changer de plan</button>`;
   }
 

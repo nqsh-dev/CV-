@@ -695,9 +695,13 @@ function refreshProfilePage() {
     s('profile-email').textContent = App.user.email;
     s('stat-plan').textContent     = App.plan ? App.plans[App.plan].name : 'Gratuit';
     s('stat-cv').textContent       = App.cvCount;
-    s('profile-plan-badge').innerHTML = App.isAdmin
+    const planLabel = App.isAdmin
       ? '<span class="badge badge-orange">Administrateur</span>'
       : App.plan ? `<span class="badge badge-blue">${App.plans[App.plan].name}</span>` : '<span class="badge badge-blue">Gratuit</span>';
+    const expiryText = App.planExpiresAt && !App.isAdmin
+      ? ` <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Expire le ${new Date(App.planExpiresAt).toLocaleDateString('fr-FR')}</div>`
+      : '';
+    s('profile-plan-badge').innerHTML = planLabel + expiryText;
     s('profile-actions').innerHTML = '';
     s('stat-logout').style.display = 'block';
   } else {

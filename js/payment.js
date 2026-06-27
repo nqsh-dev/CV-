@@ -29,6 +29,13 @@ let _txnId       = null;
 let _polling     = null;
 let _planPending = null;  // Plan en attente — pas encore activé
 
+function _computePlanExpiry(planId) {
+  if (planId === 'starter') return null;
+  if (planId === 'pro') return Date.now() + 30 * 24 * 60 * 60 * 1000;
+  if (planId === 'premium') return Date.now() + 90 * 24 * 60 * 60 * 1000;
+  return null;
+}
+
 // ══════════════════════════════════════════════════
 //  OUVRIR LE FORMULAIRE DE PAIEMENT
 // ══════════════════════════════════════════════════
@@ -357,14 +364,20 @@ function _activateSubscription(planId, transactionId) {
   // Mettre à jour l'état App
   App.plan    = planId;
   App.cvCount = 0;
+  App.planExpiresAt = _computePlanExpiry(planId);
 
   // Persister localement
   try {
     const email = App.user?.email;
     if (email) {
-      localStorage.setItem(`cvplus_plan_${email}`,    planId);
+      localStorage.setItem(`cvplus_plan_${email}`, planId);
       localStorage.setItem(`cvplus_cvcount_${email}`, '0');
-      localStorage.setItem(`cvplus_txn_${email}`,     transactionId);
+      localStorage.setItem(`cvplus_txn_${email}`, transactionId);
+      if (App.planExpiresAt) {
+        localStorage.setItem(`cvplus_plan_expiresAt_${email}`, String(App.planExpiresAt));
+      } else {
+        localStorage.removeItem(`cvplus_plan_expiresAt_${email}`);
+      }
     }
     App.saveSession();
   } catch(e) { /* localStorage indisponible */ }

@@ -92,9 +92,10 @@ function handleRegister(e) {
 
   setTimeout(() => {
     USERS_DB[email] = { nom, email, password: pass, role: 'user' };
-    App.user    = { email, nom, role: 'user' };
-    App.plan    = null;
-    App.isAdmin = false;
+    App.user          = { email, nom, role: 'user' };
+    App.plan          = null;
+    App.planExpiresAt = null;
+    App.isAdmin       = false;
     closeAuthModal();
     updatePlanBadge();
     updateAdminNav();
@@ -109,15 +110,19 @@ function loginSuccess(user) {
   App.user    = user;
   App.isAdmin = user.role === 'admin';
   if (App.isAdmin) {
-    App.plan    = 'premium';
-    App.cvCount = 0;
+    App.plan          = 'premium';
+    App.planExpiresAt = null;
+    App.cvCount       = 0;
   } else {
     try {
-      App.plan    = localStorage.getItem('cvplus_plan_' + user.email) || null;
-      App.cvCount = parseInt(localStorage.getItem('cvplus_cvcount_' + user.email) || '0');
+      App.plan          = localStorage.getItem('cvplus_plan_' + user.email) || null;
+      App.planExpiresAt = parseInt(localStorage.getItem('cvplus_plan_expiresAt_' + user.email) || '0', 10) || null;
+      App.cvCount       = parseInt(localStorage.getItem('cvplus_cvcount_' + user.email) || '0', 10);
+      App.ensurePlanValidity();
     } catch(e) {
-      App.plan    = null;
-      App.cvCount = 0;
+      App.plan          = null;
+      App.planExpiresAt = null;
+      App.cvCount       = 0;
     }
   }
   closeAuthModal();
@@ -132,10 +137,11 @@ function loginSuccess(user) {
 }
 
 function handleLogout() {
-  App.user    = null;
-  App.plan    = null;
-  App.cvCount = 0;
-  App.isAdmin = false;
+  App.user          = null;
+  App.plan          = null;
+  App.planExpiresAt = null;
+  App.cvCount       = 0;
+  App.isAdmin       = false;
   try { localStorage.removeItem('cvplus_session'); } catch(e) {}
   updatePlanBadge();
   updateAdminNav();
